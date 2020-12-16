@@ -1,0 +1,55 @@
+﻿@model RentAPlace.Web.ViewModels.Estate.EstateInputModel
+@{
+    this.ViewData["Title"] = "Create estate";
+}
+<form method="post" class="col-md-6 offset-md-3" enctype="multipart/form-data">
+    <h1 class="text-center">@this.ViewData["Title"]</h1>
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <textarea asp-for="Description" class="form-control" rows="5"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Rent"></label>
+        <input asp-for="Rent" class="form-control" />
+        <span asp-validation-for="Rent" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CountOfRooms"></label>
+        <input asp-for="CountOfRooms" class="form-control" />
+        <span asp-validation-for="CountOfRooms" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Location"></label>
+        <input asp-for="Location" class="form-control" />
+        <span asp-validation-for="Location" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Images"></label>
+        <input asp-for="Images" class="form-control" />
+        <span asp-validation-for="Images" class="text-danger"></span>
+    </div>
+    <div class="form-group" id="UtilityContainer">
+        <label asp-for="UtilitiesNames"></label>
+        <a class="btn btn-success" onclick="AddUtility()">Add</a>
+    </div>
+    <input type="submit" class="btn-primary" />
+</form>
+
+@section Scripts
+{
+    <script>
+        var utilityIndex = 0;
+        function AddUtility() {
+            $("#UtilityContainer")
+                .append("<div class='form-control'>Name: <input type='text' name='UtilitiesNames[" + utilityIndex + "]' /></div>");
+            utilityIndex++;
+        }
+    </script>
+}
